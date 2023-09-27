@@ -103,15 +103,9 @@ class App02 extends StatelessWidget {
                 padding: const EdgeInsets.all(20),
                 child: ListView(
                   scrollDirection: Axis.horizontal,
-                  children: [
-                    Comida("Burger", "burger.png"),
-                    Comida("Papas", "papas.png"),
-                    Comida("Hotdog", "hotdog.png"),
-                    Comida("Pizza", "pizza.png"),
-                    Comida("Torta", "torta.png"),
-                    Comida("Jugo", "jugo.png"),
-                    Comida("Fast Food", "fastfood.png"),
-                  ],
+                  children: COMIDAS.map((item) => (
+                      Comida("${item['name']}","${item['image']}")
+                  )).toList(),
                 ),
               ),
             ),
@@ -123,8 +117,15 @@ class App02 extends StatelessWidget {
   Widget Comida(String comida, String imagen){
     return Container(
       width: 90,
-      //padding: const EdgeInsets.fromLTRB(20, 10, 20, 40),
-      //margin: const EdgeInsets.only(right: 5),
+      margin: const EdgeInsets.only(right: 20),
+      decoration: BoxDecoration(
+        color: Colors.grey,
+        borderRadius: BorderRadius.circular(10.0),
+        border: Border.all(
+          color: Colors.black,
+          width: 2.0,
+        ),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -135,5 +136,14 @@ class App02 extends StatelessWidget {
       ),
     );
   }
-
 }
+
+const COMIDAS = [
+    {"name": "Burger","image": "burger.png"},
+    {"name": "Papas","image": "papas.png"},
+    {"name": "Hotdog","image": "hotdog.png"},
+    {"name": "Pizza","image": "pizza.png"},
+    {"name": "Torta","image": "torta.png"},
+    {"name": "Jugo","image": "jugo.png"},
+    {"name": "Fast Food","image": "fastfood.png"}
+  ];
