@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class Sueldo extends StatefulWidget {
   const Sueldo({super.key});
   @override
@@ -8,7 +7,6 @@ class Sueldo extends StatefulWidget {
 }
 
 class _SueldoState extends State<Sueldo> {
-
   TextEditingController cntNombre = TextEditingController();
   TextEditingController cntN1 = TextEditingController();
   TextEditingController cntN2 = TextEditingController();
@@ -17,6 +15,36 @@ class _SueldoState extends State<Sueldo> {
   String RESULTADO02 = "";
   String name = "";
   double valor = 0;
+
+  void mensaje(BuildContext context, String value) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          content: Container(
+            height: 50,
+            width: 300,
+            child: Column(children: [Text("$RESULTADO01",
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.deepPurple)),
+
+              Text("$RESULTADO02",
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),],
+          )
+          ),
+          actions: <Widget>[
+            Center(child: ElevatedButton(
+              style: raisedButtonStyle,
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text("Aceptar"),
+            ),)
+          ],
+        );
+      },
+    );
+  }
+
   void Calcular(){
     setState(() {
       name = cntNombre.text;
@@ -25,6 +53,7 @@ class _SueldoState extends State<Sueldo> {
       valor = (n1 * n2);
       RESULTADO01 = "¡Hola $name!";
       RESULTADO02 = "El valor de su sueldo es: \$$valor";
+      mensaje(context, RESULTADO02);
     });
   }
 
@@ -34,23 +63,39 @@ class _SueldoState extends State<Sueldo> {
       appBar: AppBar(title: const Text("")),
       body: Stack(
         children: [
-            
           // ************* BACKGROUND PRINCIPAL
-          
           Positioned(
             top: 0,
             child: Container(
               width: MediaQuery.of(context).size.width,
-              height: 190,
+              height: 320,
               decoration: const BoxDecoration(
                 color: Colors.deepPurple),
               ),
             ),
-            
-          
+
+          //IMAGEN
+          Positioned(
+            top: 0,
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              padding: const EdgeInsets.all(20),
+              child: const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image(
+                    image: AssetImage('sueldo.png'),
+                    width: 150,
+                    height: 150,
+                  )
+                ],
+              ),
+            ),
+          ),
+
            // ************ CONTENIDO NOMBRE PERSONA
           Positioned(
-              top: 40,
+              top: 170,
               child: Container(
                 width: MediaQuery.of(context).size.width,
                 height: 80,
@@ -78,7 +123,7 @@ class _SueldoState extends State<Sueldo> {
           
           // ***** CONTENIDO APLICACION
           Positioned(
-              top: 170,
+              top: 270,
               child: Container(
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height,
@@ -90,7 +135,7 @@ class _SueldoState extends State<Sueldo> {
 
           // ******* CONTENIDO FORMULARIO
           Positioned(
-            top: 178,
+            top: 260,
             child: Container(
               width: MediaQuery.of(context).size.width,
               height: 400,
@@ -107,7 +152,7 @@ class _SueldoState extends State<Sueldo> {
           ),
 
           Positioned(
-            top: 380,
+            top: 450,
             child: Container(
               width: MediaQuery.of(context).size.width,
               child: Column(
@@ -117,34 +162,12 @@ class _SueldoState extends State<Sueldo> {
                     onPressed: (){
                       Calcular();
                     }, 
-                    child: const Text("CALCULAR")
+                    child: const Text("Calcular")
                   ),
                 ]
                 ),
             ),          
           ),
-
-          Positioned(
-            top: 440,
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text("$RESULTADO01", 
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.deepPurple)),
-                
-                  Text("$RESULTADO02", 
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                ]
-                ),
-            ),          
-          )
-
-
-
-
         ]
       )
     );
@@ -153,7 +176,7 @@ class _SueldoState extends State<Sueldo> {
   final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
       onPrimary: Colors.white,
       primary: Colors.deepPurple,
-      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12.0), // Personaliza el radio del borde
       )

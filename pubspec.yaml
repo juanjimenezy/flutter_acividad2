@@ -72,6 +72,8 @@ flutter:
     - assets/pizza.png
     - assets/fondo.png
     - assets/torta.png
+    - assets/imc.png
+    - assets/sueldo.png
   # assets:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg

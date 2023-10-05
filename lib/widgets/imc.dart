@@ -44,7 +44,6 @@ class _ImcState extends State<Imc> {
               },
               child: const Text("Aceptar"),
             ),)
-
           ],
         );
       },
@@ -70,14 +69,32 @@ class _ImcState extends State<Imc> {
             top: 0,
             child: Container(
               width: MediaQuery.of(context).size.width,
-              height: 190,
+              height: 310,
               decoration: const BoxDecoration(color: Colors.deepPurple),
+            ),
+          ),
+
+          //imagen
+          Positioned(
+            top: 0,
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              padding: const EdgeInsets.all(20),
+              child: const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image(
+                    image: AssetImage('imc.png'),
+                    width: 300,
+                  )
+                ],
+              ),
             ),
           ),
 
           //titulo
           Positioned(
-            top: 40,
+            top: 200,
             child: Container(
               width: MediaQuery.of(context).size.width,
               height: 80,
@@ -96,7 +113,7 @@ class _ImcState extends State<Imc> {
 
           // ***** CONTENIDO APLICACION
           Positioned(
-            top: 170,
+            top: 290,
             child: Container(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
@@ -108,7 +125,7 @@ class _ImcState extends State<Imc> {
 
           // peso
           Positioned(
-            top: 178,
+            top: 300,
             child: Container(
               width: MediaQuery.of(context).size.width,
               margin: const EdgeInsets.all(10),
@@ -124,7 +141,7 @@ class _ImcState extends State<Imc> {
 
           //text
           Positioned(
-            top: 320,
+            top: 450,
             width: MediaQuery.of(context).size.width,
             child: Column(
               children: [
@@ -157,7 +174,7 @@ Widget cajas(TextEditingController controller, String label, TextInputType tipo,
 final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
     onPrimary: Colors.white,
     primary: Colors.deepPurple,
-    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+    padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(12.0), // Personaliza el radio del borde
     )
